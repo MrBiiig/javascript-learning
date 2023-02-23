@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "production",
-  // devtool: "source-map",
+  mode: "development",
+  devtool: "source-map",
   // 打包的入口文件地址
   entry: {
     main: path.resolve(__dirname, "./src/index.js"),
@@ -50,7 +50,7 @@ module.exports = {
             loader: "css-loader",
             options: {
               // 开启css模块化
-              modules: true,
+              modules: false,
             },
           },
           "postcss-loader",
@@ -76,7 +76,8 @@ module.exports = {
     mainFiles: ["index"],
     // 路径别名
     alias: {
-      "~": path.join(__dirname, "./src"),
+      "@": path.resolve(__dirname, "src"),
+      "@components": path.resolve(__dirname, "src/components"),
     },
   },
   //一般不需要配置 就用默认就行

@@ -1,2 +1,36 @@
-.main {
+.list_item {
+  position: relative;
+  background-color: #ddd;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  .block_in_item {
+  }
+  .left_top_tag {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(50%, 0px);
+    .left_angle_box {
+      display: inline-block;
+      vertical-align: bottom;
+      border-bottom: 50px solid red;
+      border-top: none;
+      border-left: 50px solid transparent;
+    }
+    .text_box {
+      display: inline-block;
+      vertical-align: bottom;
+      line-height: 50px;
+      background-color: red;
+      color: white;
+    }
+    .right_angle_box {
+      display: inline-block;
+      vertical-align: bottom;
+      border-bottom: 50px solid red;
+      border-top: none;
+      border-right: 50px solid transparent;
+    }
+  }
 }

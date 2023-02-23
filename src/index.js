@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.less";
-import ListItem from "~/components/listItem/index.jsx";
+import ListItem from "@components/listItem";
 console.log("123");
 class App extends React.Component {
   render() {
@@ -12,4 +12,9 @@ class App extends React.Component {
     );
   }
 }
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
