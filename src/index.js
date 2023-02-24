@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.less";
-import ListItem from "@components/listItem";
+import ListItem from "@/components/cbListItem";
 console.log("123");
 class App extends React.Component {
   render() {

@@ -77,7 +77,6 @@ module.exports = {
     // 路径别名
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@components": path.resolve(__dirname, "src/components"),
     },
   },
   //一般不需要配置 就用默认就行
