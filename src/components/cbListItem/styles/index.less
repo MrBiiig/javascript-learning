@@ -2,9 +2,25 @@
   position: relative;
   background-color: #ddd;
   padding: 5px;
-  width: 50%;
+  width: 70%;
   box-sizing: border-box;
   .block_in_item {
-    min-height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    padding: 7px;
+    box-sizing: border-box;
+    .inner_border_block {
+      border: dashed 1px blue;
+      border-radius: 6px;
+    }
+    &.whole_row {
+      width: 100%;
+    }
+    &.drag_over {
+      .inner_border_block {
+        border-width: 2px;
+      }
+    }
   }
 }

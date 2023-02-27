@@ -1,1 +1,13 @@
 /* 总体样式 */
+body {
+  /* 节点内部有浮动元素，用来清除浮动 */
+  .clear_inner_float {
+    clear: both;
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+      height: 0;
+    }
+  }
+}

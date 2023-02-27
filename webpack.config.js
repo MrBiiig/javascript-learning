@@ -71,7 +71,7 @@ module.exports = {
   ],
   resolve: {
     // 要解析的文件的扩展名
-    extensions: [".js", ".jsx", ".json", ".less"],
+    extensions: [".js", ".jsx", ".json", ".less", "css"],
     // 解析目录时要使用的文件名
     mainFiles: ["index"],
     // 路径别名
