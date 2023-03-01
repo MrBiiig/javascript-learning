@@ -63,7 +63,6 @@ const AngleTag = ({
       if (!isNaN(width)) {
         //近似取两位小数
         width = Math.round(width * 100) / 100;
-        console.log("setWidthTextBlock", width);
         setWidthTextBlock(width);
       }
     }

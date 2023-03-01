@@ -31,7 +31,7 @@ module.exports = {
     rules: [
       {
         // 对项目中.js结尾的文件，使用babel-loader进行转义处理
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx|js|jsx)$/,
         // loader: "babel-loader",
         use: {
           loader: "babel-loader",
@@ -71,7 +71,7 @@ module.exports = {
   ],
   resolve: {
     // 要解析的文件的扩展名
-    extensions: [".js", ".jsx", ".json", ".less", "css"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".less", "css"],
     // 解析目录时要使用的文件名
     mainFiles: ["index"],
     // 路径别名

@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import "./styles/index.less";
 
-const WidgetsPanel = (props) => {
-  const widgets = props.widgets ? props.widgets : [];
+const FieldsPanel = (props) => {
+  const fields = props.fields ? props.fields : [];
 
-  const handleDragStart = (widgetKey, event) => {
-    console.log("handleDragStart");
-    event.dataTransfer.setData("widgetKey", widgetKey);
+  const handleDragStart = (fieldKey, event) => {
+    event.dataTransfer.setData("fieldKey", fieldKey);
   };
 
   return (
-    <div className="chuangba_widgets_panel_box">
-      {widgets.map((el) => (
+    <div className="chuangba_fields_panel_box">
+      {fields.map((el) => (
         <span
           key={
             el.key
@@ -33,4 +32,4 @@ const WidgetsPanel = (props) => {
   );
 };
 
-export default WidgetsPanel;
+export default FieldsPanel;

@@ -4,12 +4,15 @@ import { Input, InputNumber, Radio, Checkbox, Select } from "element-react";
 
 import AngleTag from "@/components/cbAngleTag";
 
-import { WIDGET_TYPE } from "@/components/cbWidgetsPanel/widgets";
+import {
+  WIDGET_TYPE,
+  WIDGET_TYPE_MAPPING_FIELD_DEFAULT_PROPS,
+} from "@/components/cbFieldsPanel/widgets";
 
 import "./styles/index.less";
 
-//单个项目中的block内的控件
-const BlockWidget = (props) => {
+//单个项目中的block内的字段（block能称之为字段，就是block内是有控件的，不是空block）
+const FieldBlock = (props) => {
   const type = props.type ? props.type : "";
   switch (type) {
     case WIDGET_TYPE.SINGLE_LINE_INPUT:
@@ -72,22 +75,27 @@ const BlockWidget = (props) => {
 
 //列表中的单个项目
 const ListItem = (props) => {
-  const widgets = props.widgets ? props.widgets : [];
+  const fields = props.fields ? props.fields : [];
+  const blockList = props.blockList ? props.blockList : [];
+  const activeFieldBlock = props.activeFieldBlock ? props.activeFieldBlock : {};
 
-  const [blockArr, setBlockArr] = useState([{}, {}, {}, {}, {}, {}, {}]);
+  const setBlockList = (newList = []) => {
+    props.setBlockList
+      ? props.setBlockList(newList)
+      : console.error("props.setBlockList is null");
+  };
+  const setActiveFieldBlock = (activeFieldBlock = {}) => {
+    props.setActiveFieldBlock
+      ? props.setActiveFieldBlock(activeFieldBlock)
+      : console.error("props.setActiveFieldBlock is null");
+  };
 
-  useEffect(() => {
-    console.log("useEffect");
-  }, []);
+  useEffect(() => {}, []);
 
   const handleDragEnter = (dragEnterBlockIndex, event) => {
-    console.log("========================================");
-    console.log("handleDragEnter");
-    console.log(event.currentTarget.className);
-    console.log("========================================");
     // flagDragEnter清掉以前的，弄上新的
-    setBlockArr(
-      blockArr.map((el, idx) => ({
+    setBlockList(
+      blockList.map((el, idx) => ({
         ...el,
         flagDragEnter: idx === dragEnterBlockIndex ? true : false,
       }))
@@ -98,35 +106,26 @@ const ListItem = (props) => {
   };
 
   const handleDrop = (dropBlockIndex, event) => {
-    console.log("handleDrop");
     event.preventDefault();
-    let widgetKey = event.dataTransfer.getData("widgetKey");
-    let currentWidget = widgets.find((el) => el.key === widgetKey);
-    let widgetType = currentWidget ? currentWidget.type : null;
+    let fieldKey = event.dataTransfer.getData("fieldKey");
+    let currentField = fields.find((el) => el.key === fieldKey);
+    let widgetType = currentField ? currentField.type : null;
     if (widgetType) {
-      blockArr[dropBlockIndex] = {
+      blockList[dropBlockIndex] = {
         key: widgetType + dropBlockIndex,
         type: widgetType,
+        ...WIDGET_TYPE_MAPPING_FIELD_DEFAULT_PROPS[widgetType],
       };
-      setBlockArr([...blockArr]);
+      setBlockList([...blockList]);
     } else {
-      console.error("currentWidget or widgetType is null!!");
+      console.error("currentField or widgetType is null!!");
     }
   };
 
   const handleDragLeave = (event) => {
-    console.log("========================================");
-    console.log("handleDragLeave");
-    console.log(event.currentTarget.className);
-    console.log("========================================");
-    if (
-      event.currentTarget.className == "block_in_item block_in_item0  drag_over"
-    ) {
-      debugger;
-    }
     // flagDragEnter清掉
-    setBlockArr(
-      blockArr.map((el) => ({
+    setBlockList(
+      blockList.map((el) => ({
         ...el,
         flagDragEnter: false,
       }))
@@ -135,19 +134,24 @@ const ListItem = (props) => {
 
   return (
     <div className="chuangba_list_item_box">
-      {blockArr.map((el, idx) => (
+      {blockList.map((el, idx) => (
         <div
           key={el.key ? el.key : idx}
           className={
             "block_in_item block_in_item" +
             idx +
             " " +
+            (el.type ? " not_empty" : "") +
+            (!!el.key && activeFieldBlock.key === el.key ? " active" : "") +
             (el.flagWholeRow ? " whole_row" : "") +
             (el.flagDragEnter ? " drag_over" : "")
           }
+          onClick={() => {
+            setActiveFieldBlock(el);
+          }}
         >
           {el.type ? (
-            <BlockWidget type={el.type}></BlockWidget>
+            <FieldBlock type={el.type}></FieldBlock>
           ) : (
             <div
               className="inner_border_block"

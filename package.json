@@ -33,7 +33,10 @@
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-cache-route": "^1.12.11",
+    "react-router-dom": "5.3.4",
+    "recorder-core": "^1.2.23020100"
   },
   "browserslist": [
     "defaults",
