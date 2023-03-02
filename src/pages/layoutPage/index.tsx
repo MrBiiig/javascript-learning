@@ -7,9 +7,17 @@ import CacheRoute, { CacheSwitch } from "react-router-cache-route";
 import DragFieldsDemo from "@/pages/demoPages/dragFieldsDemo";
 import DragFieldsDemoClazz from "@/pages/demoPages/dragFieldsDemo/indexClazz";
 import RecordAudioDemo from "@/pages/demoPages/recordAudioDemo";
+import RotateSwitchDemo from "@/pages/demoPages/rotateSwitchDemo";
+import NavMenu3D from "@/pages/demoPages/navMenu3D";
+/* 404页面 */
+import NotFound from "@/pages/notFound";
+
 /* 页面结构组件 */
 import NavMenu from "./navMenu";
 
+/**
+ * 整体网页组件，包含了路由导航部分（或封装为组件） 和 路由页面视图部分（或封装为组件）
+ */
 const LayoutPage = () => {
   return (
     <Router>
@@ -22,7 +30,9 @@ const LayoutPage = () => {
           component={DragFieldsDemoClazz}
         />
         <Route exact path="/recordAudioDemo" component={RecordAudioDemo} />
-        <Route render={() => <div>404 未找到页面</div>} />
+        <Route exact path="/rotateSwitchDemo" component={RotateSwitchDemo} />
+        <Route exact path="/navMenu3D" component={NavMenu3D} />
+        <Route render={NotFound} />
       </CacheSwitch>
     </Router>
   );

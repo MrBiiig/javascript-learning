@@ -27,6 +27,20 @@ const NavMenu = (props) => {
       >
         线上录音demo
       </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/rotateSwitchDemo");
+        }}
+      >
+        翻转滑块switch
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/navMenu3D");
+        }}
+      >
+        3D导航菜单栏
+      </Button>
     </div>
   );
 };
