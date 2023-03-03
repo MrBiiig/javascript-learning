@@ -25,7 +25,14 @@ const NavMenu = (props) => {
           props.history.push("/recordAudioDemo");
         }}
       >
-        线上录音demo
+        线上录音线上播放demo
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/recordAudio2Demo");
+        }}
+      >
+        线上录音数据上传demo
       </Button>
       <Button
         onClick={() => {
@@ -40,6 +47,13 @@ const NavMenu = (props) => {
         }}
       >
         3D导航菜单栏
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/algorithms1");
+        }}
+      >
+        算法1
       </Button>
     </div>
   );

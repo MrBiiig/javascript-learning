@@ -6,9 +6,11 @@ import CacheRoute, { CacheSwitch } from "react-router-cache-route";
 /* 跳转各页面 */
 import DragFieldsDemo from "@/pages/demoPages/dragFieldsDemo";
 import DragFieldsDemoClazz from "@/pages/demoPages/dragFieldsDemo/indexClazz";
-import RecordAudioDemo from "@/pages/demoPages/recordAudioDemo";
+import RecordAudioDemo from "@/pages/demoPages/recordAudioDemo/index_play";
+import RecordAudio2Demo from "@/pages/demoPages/recordAudioDemo/index_file";
 import RotateSwitchDemo from "@/pages/demoPages/rotateSwitchDemo";
 import NavMenu3D from "@/pages/demoPages/navMenu3D";
+import Algorithms1 from "@/pages/algorithms/index1";
 /* 404页面 */
 import NotFound from "@/pages/notFound";
 
@@ -30,8 +32,10 @@ const LayoutPage = () => {
           component={DragFieldsDemoClazz}
         />
         <Route exact path="/recordAudioDemo" component={RecordAudioDemo} />
+        <Route exact path="/recordAudio2Demo" component={RecordAudio2Demo} />
         <Route exact path="/rotateSwitchDemo" component={RotateSwitchDemo} />
         <Route exact path="/navMenu3D" component={NavMenu3D} />
+        <Route exact path="/algorithms1" component={Algorithms1} />
         <Route render={NotFound} />
       </CacheSwitch>
     </Router>

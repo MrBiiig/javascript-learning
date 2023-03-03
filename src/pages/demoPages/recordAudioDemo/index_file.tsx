@@ -3,9 +3,22 @@ import React from "react";
 import { Button } from "element-react";
 import { withRouter } from "react-router-dom";
 import "./styles/index.less";
-
+/* 
+https://gitee.com/xiangyuecn/Recorder?_from=gitee_search#https://xiangyuecn.gitee.io/recorder/assets/%E5%B7%A5%E5%85%B7-%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E5%92%8C%E9%9D%99%E6%80%81%E5%88%86%E5%8F%91Runtime.html?jsname=teach.realtime.asr.aliyun.short
+*/
+/* 核心代码 */
 //必须引入的核心，换成require也是一样的。注意：recorder-core会自动往window下挂载名称为Recorder对象，全局可调用window.Recorder，也许可自行调整相关源码清除全局污染
 import Recorder from "recorder-core";
+
+/* pcm */
+//引入相应格式支持文件；如果需要多个格式支持，把这些格式的编码引擎js文件放到后面统统引入进来即可
+import "recorder-core/src/engine/pcm";
+
+/* wav */
+//引入相应格式支持文件；如果需要多个格式支持，把这些格式的编码引擎js文件放到后面统统引入进来即可
+import "recorder-core/src/engine/wav";
+
+/* mp3 */
 //引入相应格式支持文件；如果需要多个格式支持，把这些格式的编码引擎js文件放到后面统统引入进来即可
 import "recorder-core/src/engine/mp3";
 import "recorder-core/src/engine/mp3-engine"; //如果此格式有额外的编码引擎（*-engine.js）的话，必须要加上
@@ -65,6 +78,14 @@ const RecordAudioDemo = (props) => {
       );
     }
     forceUpdate();
+
+    //卸载组件前调用
+    return () => {
+      if (recorder.current) {
+        recorder.current.close(); //释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+        recorder.current = null;
+      }
+    };
   }, []);
 
   const startRecording = () => {
