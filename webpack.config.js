@@ -36,7 +36,26 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  useBuiltIns: "usage",
+                  corejs: { version: 3 },
+                },
+              ],
+              "@babel/preset-react",
+            ],
+            plugins: [
+              [
+                "@babel/plugin-transform-runtime",
+                {
+                  corejs: 3,
+                  helpers: true,
+                  regenerator: true, //不污染全局作用域
+                },
+              ],
+            ],
           },
         },
         // 排除node_modules

@@ -38,7 +38,7 @@ const RecordAudioDemo = (props) => {
       isUserAllowed.current = false;
       recorder.current = Recorder({
         //本配置参数请参考下面的文档，有详细介绍
-        type: "mp3",
+        type: "pcm",
         sampleRate: 16000,
         bitRate: 16, //mp3格式，指定采样率hz、比特率kbps，其他参数使用默认配置；注意：是数字的参数必须提供数字，不要用字符串；需要使用的type类型，需提前把格式支持文件加载进来，比如使用wav格式需要提前加载wav.js编码引擎
         onProcess: function (
@@ -95,8 +95,8 @@ const RecordAudioDemo = (props) => {
     }
     recorder.current.start();
   };
-
-  const stopRecording = () => {
+  /* 停止录音并让播放器可播放录音 */
+  const stopRecordingThenMakeThePlayer = () => {
     if (!recorder.current || !isUserAllowed.current) {
       alert("请刷新页面，允许浏览器录音的授权");
       return;
@@ -113,14 +113,41 @@ const RecordAudioDemo = (props) => {
 
         //已经拿到blob文件对象想干嘛就干嘛：立即播放、上传
 
-        /*** 【立即播放例子】 ***/
+        /*** 【可播放例子】 ***/
         setBlob(blob);
-        // var audio = document.createElement("audio");
-        // audio.controls = true;
-        // document.body.appendChild(audio);
-        // //简单利用URL生成播放地址，注意不用了时需要revokeObjectURL，否则霸占内存
-        // audio.src = (window.URL || webkitURL).createObjectURL(blob);
-        // audio.play();
+      },
+      function (msg) {
+        console.log("录音失败:" + msg);
+        recorder.current.close(); //可以通过stop方法的第3个参数来自动调用close
+        recorder.current = null;
+      }
+    );
+  };
+  /* 停止录音并识别 */
+  const stopRecordingThenRecognize = () => {
+    if (!recorder.current || !isUserAllowed.current) {
+      alert("请刷新页面，允许浏览器录音的授权");
+      return;
+    }
+    recorder.current.stop(
+      function (blob, duration) {
+        console.log(
+          blob,
+          (window.URL || webkitURL).createObjectURL(blob),
+          "时长:" + duration + "ms"
+        );
+        recorder.current.close(); //释放录音资源，当然可以不释放，后面可以连续调用start；但不释放时系统或浏览器会一直提示在录音，最佳操作是录完就close掉
+        recorder.current = null;
+
+        //已经拿到blob文件对象想干嘛就干嘛：立即播放、上传
+        let reader = new FileReader();
+        reader.onloadend = () => {
+          console.log(reader.result);
+          let upfile_b64 = (/.+;\s*base64\s*,\s*(.+)$/i.exec(reader.result) ||
+            [])[1]; //录音文件内容，后端进行base64解码成二进制
+          console.log(upfile_b64);
+        };
+        reader.readAsDataURL(blob);
       },
       function (msg) {
         console.log("录音失败:" + msg);
@@ -135,7 +162,8 @@ const RecordAudioDemo = (props) => {
       <Button disabled={!isUserAllowed.current} onClick={startRecording}>
         开始录音
       </Button>
-      <Button onClick={stopRecording}>停止录音</Button>
+      {/* <Button onClick={stopRecordingThenMakeThePlayer}>停止录音并可播放</Button> */}
+      <Button onClick={stopRecordingThenRecognize}>停止录音并开始识别</Button>
       <AudioPlayer blob={blob}></AudioPlayer>
     </div>
   );
