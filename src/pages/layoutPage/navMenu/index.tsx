@@ -76,6 +76,13 @@ const NavMenu = (props) => {
       >
         Promise
       </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/algorithms5");
+        }}
+      >
+        对象、原型、原型链
+      </Button>
     </div>
   );
 };
