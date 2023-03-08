@@ -53,7 +53,28 @@ const NavMenu = (props) => {
           props.history.push("/algorithms1");
         }}
       >
-        算法1
+        数组处理
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/algorithms2");
+        }}
+      >
+        大任务、防抖、节流
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/algorithms3");
+        }}
+      >
+        拷贝
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/algorithms4");
+        }}
+      >
+        Promise
       </Button>
     </div>
   );

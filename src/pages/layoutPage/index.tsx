@@ -11,6 +11,9 @@ import RecordAudio2Demo from "@/pages/demoPages/recordAudioDemo/index_file";
 import RotateSwitchDemo from "@/pages/demoPages/rotateSwitchDemo";
 import NavMenu3D from "@/pages/demoPages/navMenu3D";
 import Algorithms1 from "@/pages/algorithms/index1";
+import Algorithms2 from "@/pages/algorithms/index2";
+import Algorithms3 from "@/pages/algorithms/index3";
+import Algorithms4 from "@/pages/algorithms/index4";
 /* 404页面 */
 import NotFound from "@/pages/notFound";
 
@@ -36,6 +39,9 @@ const LayoutPage = () => {
         <Route exact path="/rotateSwitchDemo" component={RotateSwitchDemo} />
         <Route exact path="/navMenu3D" component={NavMenu3D} />
         <Route exact path="/algorithms1" component={Algorithms1} />
+        <Route exact path="/algorithms2" component={Algorithms2} />
+        <Route exact path="/algorithms3" component={Algorithms3} />
+        <Route exact path="/algorithms4" component={Algorithms4} />
         <Route render={NotFound} />
       </CacheSwitch>
     </Router>
