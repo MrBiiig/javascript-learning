@@ -50,6 +50,14 @@ const NavMenu = (props) => {
       </Button>
       <Button
         onClick={() => {
+          props.history.push("/cssLayouts");
+        }}
+      >
+        css布局
+      </Button>
+
+      <Button
+        onClick={() => {
           props.history.push("/algorithms1");
         }}
       >
