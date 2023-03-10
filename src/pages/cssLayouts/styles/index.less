@@ -1,36 +1,9 @@
 .page_cssLayouts_box {
-  @header_height: 40px;
-  @footer_height: 40px;
-
-  .holy_header {
-    height: @header_height;
-  }
-  .holy_footer {
-    height: @footer_height;
-  }
-  .holy_grail_center_content {
-    float: left;
-    position: relative;
-    width: 100%;
-    padding-left: 100px;
-  }
-  .holy_grail_left_content {
-    float: left;
-    position: relative;
-    margin-left: -100%;
-  }
-  .holy_grail_right_content {
-    float: left;
-    position: relative;
-  }
-
-  .width_100 {
-    width: 100px;
-  }
-  .height_200 {
-    height: 200px;
-  }
-  .container {
+  // * {
+  //   //布局这里统一用border盒模型吧（width height固定后，padding border会向内挤压content）
+  //   box-sizing: border-box;
+  // }
+  .bfc_container {
     overflow: hidden;
   }
   .bg_color_1 {
@@ -53,5 +26,40 @@
   }
   .bg_color_7 {
     background-color: #ccc;
+  }
+  // 圣杯布局
+  .holy_grail_layout {
+    @header_height: 40px;
+    @footer_height: 40px;
+    @main_height: 150px;
+    @left_width: 100px;
+    @right_width: 150px;
+    .header {
+      height: @header_height;
+    }
+    .footer {
+      height: @footer_height;
+    }
+    .center {
+      height: @main_height;
+
+      float: left; //1需要先统一浮动起来
+      width: 100%; //2因为浮动后center宽度不再是默认100%了
+      padding-left: @left_width;
+    }
+    .left {
+      height: @main_height;
+      width: @left_width;
+
+      float: left; //1
+      margin-left: -100%; //3利用margin-left负值把左右“挪到”两边（但此时left和right还与center的“content”重叠）
+    }
+    .right {
+      height: @main_height;
+      width: @right_width;
+
+      float: left; //1
+      margin-left: -@right_width; //3
+    }
   }
 }
