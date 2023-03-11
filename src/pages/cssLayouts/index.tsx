@@ -7,6 +7,7 @@ const CssLayouts = () => {
   return (
     <React.Fragment>
       <div className="page_cssLayouts_box">
+        <div>两个圣杯布局2333333</div>
         {/* 呃没必要。。。两种情况都一样，不过也算是加深一下box-sizing的印象 */}
         {/* 圣杯布局 content-box(chrome浏览器默认)的情况 */}
         <div className="bfc_container holy_grail_layout inner_content_box">
@@ -30,6 +31,7 @@ const CssLayouts = () => {
           <div className="footer bg_color_5">footer</div>
         </div>
       </div>
+      <div>非浮动元素被</div>
     </React.Fragment>
   );
 };
