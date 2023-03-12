@@ -3,6 +3,7 @@
   //   //“border盒”模型（width height固定后，padding border会向内挤压content，而“content盒”则会向外挤）
   //   box-sizing: border-box;
   // }
+
   .inner_border_box {
     * {
       box-sizing: border-box;
@@ -106,5 +107,17 @@
         }
       }
     }
+  }
+}
+.my_wife {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-family: SimSun;
+  font-weight: bold;
+  &:hover {
+    box-shadow: 1px 1px 4px 2px #ccc;
   }
 }

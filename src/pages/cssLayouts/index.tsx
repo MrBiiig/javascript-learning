@@ -32,6 +32,10 @@ const CssLayouts = () => {
         </div>
       </div>
       <div>非浮动元素被</div>
+
+      <div style={{ textAlign: "center" }}>
+        <div class="my_wife">贾银银</div>
+      </div>
     </React.Fragment>
   );
 };
