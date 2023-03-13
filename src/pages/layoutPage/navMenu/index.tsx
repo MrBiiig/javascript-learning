@@ -55,6 +55,13 @@ const NavMenu = (props) => {
       >
         css布局
       </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/cacheMethods");
+        }}
+      >
+        强缓存、协商缓存
+      </Button>
 
       <Button
         onClick={() => {

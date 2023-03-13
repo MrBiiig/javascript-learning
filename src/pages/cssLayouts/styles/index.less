@@ -18,28 +18,28 @@
     overflow: hidden;
   }
   .bg_color_1 {
-    background-color: #000;
+    background-color: #000000;
   }
   .bg_color_2 {
-    background-color: #222;
+    background-color: #880000;
   }
   .bg_color_3 {
-    background-color: #444;
+    background-color: #dd0000;
   }
   .bg_color_4 {
-    background-color: #666;
+    background-color: #008800;
   }
   .bg_color_5 {
-    background-color: #888;
+    background-color: #00dd00;
   }
   .bg_color_6 {
-    background-color: #aaa;
+    background-color: #000088;
   }
   .bg_color_7 {
-    background-color: #ccc;
+    background-color: #0000dd;
   }
   /* 圣杯布局（margin-left负值方式） */
-  .holy_grail_layout {
+  .holy_grail_layout1 {
     color: #fff;
     @left_width: 200px;
     @right_width: 150px;
@@ -48,7 +48,7 @@
       .header {
       }
       .footer {
-        clear: both; //2.隔离后面元素受浮动的影响
+        clear: left; //2.隔离后面元素受浮动的影响
       }
       .content {
         padding-left: @left_width; //5.要消重叠，给左栏腾空间（但又把左栏挤到右边）
@@ -80,7 +80,7 @@
       .header {
       }
       .footer {
-        clear: both; //2.隔离后面元素受浮动的影响
+        clear: left; //2.隔离后面元素受浮动的影响
       }
       .content {
         padding-left: @left_width; //5.要消重叠，给左栏腾空间（但又把左栏挤到右边）
@@ -105,6 +105,60 @@
           position: relative; //9.利用相对定位使被挤的右栏偏移再回到这行最右边
           right: -@right_width; //9
         }
+      }
+    }
+  }
+  /* 圣杯布局（flex方式） */
+  .holy_grail_layout2 {
+    color: #fff;
+    @left_width: 200px;
+    @right_width: 150px;
+    .header {
+    }
+    .footer {
+    }
+    .content {
+      display: flex;
+      .left {
+        width: @left_width;
+      }
+      .right {
+        width: @right_width;
+      }
+      .center {
+        flex: 1;
+      }
+    }
+  }
+  /* 双飞翼布局 */
+  .twin_wings_layout {
+    color: #fff;
+    @left_width: 200px;
+    @right_width: 150px;
+    .header {
+    }
+    .footer {
+      clear: left;
+    }
+    .content {
+      .center {
+        float: left;
+        width: 100%;
+        .inner_center {
+          margin-left: @left_width;
+        }
+      }
+      .left {
+        width: @left_width;
+
+        float: left;
+        margin-left: -100%;
+      }
+      .right {
+        width: @right_width;
+
+        float: left;
+        margin-left: -@right_width;
       }
     }
   }
