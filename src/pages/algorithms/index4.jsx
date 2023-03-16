@@ -108,9 +108,9 @@ const Algorithms = () => {
         pFuncArr.reduce((pre, cur, idx) => {
           return pre.then((preRes) => {
             return new Promise((curResolve) => {
-              cur().then((curRes) => {
-                data.push(curRes);
-                curResolve(curRes);
+              cur().then((curResult) => {
+                data.push(curResult);
+                curResolve(curResult);
                 if (idx === pFuncArr.length - 1) {
                   mainResolve(data);
                 }

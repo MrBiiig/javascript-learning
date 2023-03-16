@@ -98,6 +98,20 @@ const NavMenu = (props) => {
       >
         对象、原型、原型链
       </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/closureTest");
+        }}
+      >
+        闭包（包含柯里化）
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.push("/regExpTest");
+        }}
+      >
+        正则表达式
+      </Button>
     </div>
   );
 };

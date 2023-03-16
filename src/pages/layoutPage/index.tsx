@@ -17,6 +17,8 @@ import Algorithms2 from "@/pages/algorithms/index2";
 import Algorithms3 from "@/pages/algorithms/index3";
 import Algorithms4 from "@/pages/algorithms/index4";
 import Algorithms5 from "@/pages/algorithms/index5";
+import ClosureTest from "@/pages/closureTest";
+import RegExpTest from "@/pages/regularExpressionTest";
 /* 404页面 */
 import NotFound from "@/pages/notFound";
 
@@ -48,6 +50,8 @@ const LayoutPage = () => {
         <Route exact path="/algorithms3" component={Algorithms3} />
         <Route exact path="/algorithms4" component={Algorithms4} />
         <Route exact path="/algorithms5" component={Algorithms5} />
+        <Route exact path="/closureTest" component={ClosureTest} />
+        <Route exact path="/regExpTest" component={RegExpTest} />
         <Route render={NotFound} />
       </CacheSwitch>
     </Router>
